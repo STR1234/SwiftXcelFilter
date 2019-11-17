@@ -137,35 +137,6 @@ public class SperrlistenSwingUI {
                 public void actionPerformed(ActionEvent e) {
                     if (buttonFunktion.equals("auswaehlen")) {
                         fileChooser();
-                   /**     if (firstClick) {
-                            firstClick = false;
-                            sperrlistenUI = new SperrlistenUI();
-                            SperrlistenUI.launch(sperrlistenUI.getClass());
-                            try {
-                                this.wait();
-                            } catch (InterruptedException e1) {
-                                e1.printStackTrace();
-                            }
-                        } else {
-                            sperrlistenUI.notifyAll();
-                        }
-                    */
-                        /**       try{
-                         EventQueue.invokeAndWait(new Runnable(){
-                         public void run() {
-                         try {
-                         SperrlistenUI.launch();
-                         //  SperrlistenUI.main(null);
-                         } catch (Exception e) {
-                         e.printStackTrace();
-                         }
-                         }
-                         });
-                         }
-                         catch(Exception e1) {
-                         e1.printStackTrace();
-                         }
-                         */
                     } else if (buttonFunktion.equals("abbrechen")) {
                         frame.dispose();
                     } else if (buttonFunktion.equals("fileChooser")) {
