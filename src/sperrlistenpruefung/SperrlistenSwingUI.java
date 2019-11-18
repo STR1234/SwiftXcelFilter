@@ -18,8 +18,6 @@ public class SperrlistenSwingUI {
     JPanel buttonPanel = new JPanel();
     JPanel textPanel = new JPanel();
     ActionListener clickListener;
-    boolean firstClick = true;
-    SperrlistenUI sperrlistenUI;
     File selectedFile;
     boolean isFileSelected = false;
 

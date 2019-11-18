@@ -14,10 +14,7 @@ import java.io.File;
 public class SperrlistenUI extends Application {
     FileChooser fileChooserWindow;
     Stage stage;
-  /**  public static void main(String[] args) {
-        launch(args);
-    }
-*/
+
     public SperrlistenUI() {
     }
 
