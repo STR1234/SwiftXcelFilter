@@ -29,7 +29,7 @@ public class Sperrlistenpruefer {
         sperrListenLeser.initialisiereWorkbook();
         mailListenLeser.initialisiereWorkbook();
 
-        if (this.verwendetesOS.equals("mac") || verwendetesOS.equals("nix")
+        if (this.verwendetesOS.equals("Mac OS X") || verwendetesOS.equals("nix")
                 || verwendetesOS.equals("nux")
                 || verwendetesOS.equals("aix")) {
             this.speicherPfad = "/";
@@ -190,7 +190,7 @@ public class Sperrlistenpruefer {
                 this.speicherPfad =  neuerListenPfad[i];
 
                 //MacOS
-                //this.speicherPfad = this.speicherPfad + neuerListenPfad[i];
+                this.speicherPfad = this.speicherPfad + neuerListenPfad[i];
                 System.out.println(neuerListenPfad[i]);
 
             } else if (i < neuerListenPfad.length - 1) {
@@ -199,7 +199,7 @@ public class Sperrlistenpruefer {
                         this.speicherPfad + "\\" + neuerListenPfad[i];
 
                 //MacOS
-                //this.speicherPfad = this.speicherPfad + neuerListenPfad[i] + "/";
+                this.speicherPfad = this.speicherPfad + neuerListenPfad[i] + "/";
                 System.out.println(neuerListenPfad[i]);
             } else {
                 this.speicherPfad = this.speicherPfad + neuerListenPfad[i];
@@ -209,5 +209,9 @@ public class Sperrlistenpruefer {
 
         System.out.println(this.speicherPfad);
         return aktuellerListenPfad;
+    }
+
+    public void listenPfadOS(String os) {
+
     }
 }
