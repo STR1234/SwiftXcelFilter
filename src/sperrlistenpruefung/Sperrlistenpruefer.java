@@ -13,6 +13,7 @@ public class Sperrlistenpruefer {
     Sperrlistenleser mailListenLeser;
     Sperrlistenleser sperrListenLeser;
     ArrayList zuSperrendeAdressZeilen = new ArrayList();
+    ArrayList enternteAdressen = new ArrayList();
     String mailListenPfad;
     String verwendetesOS = System.getProperty("os.name");
 
@@ -43,14 +44,18 @@ public class Sperrlistenpruefer {
     public void mailAdressenFilter() {
 
         int sperrListenLaenge = sperrListenLeser.gibLaenge();
-
         int mailListenLaenge = mailListenLeser.gibLaenge();
 
         for (int i = 1; i <= sperrListenLaenge; i++) {
             for (int j = 1; j <= mailListenLaenge; j++) {
-                if (mailListenLeser.gibZeilenWert(j, 1).equals(
+                String aktuelleAdresse =
+                        mailListenLeser.gibZeilenWert(j, 1);
+                if (aktuelleAdresse.equals(
                         sperrListenLeser.gibZeilenWert(i, 1))) {
                         this.zuSperrendeAdressZeilen.add(j);
+                        if (!this.enternteAdressen.contains(aktuelleAdresse)) {
+                            this.enternteAdressen.add(aktuelleAdresse);
+                        }
                 }
             }
         }
