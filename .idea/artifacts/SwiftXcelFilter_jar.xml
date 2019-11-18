@@ -1,0 +1,25 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="SwiftXcelFilter:jar">
+    <output-path>$PROJECT_DIR$/compilerOutput/artifacts/SwiftXcelFilter_jar</output-path>
+    <root id="archive" name="SwiftXcelFilter.jar">
+      <element id="module-output" name="SwiftXcelFilter" />
+      <element id="extracted-dir" path="$USER_HOME$/Downloads/ApachePOIDownload/poi-ooxml-schemas-3.9.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/Downloads/ApachePOIDownload/commons-codec-1.12.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/Downloads/ApachePOIDownload/commons-collections4-4.3.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/Downloads/ApachePOIDownload/commons-compress-1.18.jar" path-in-jar="/" />
+      <element id="library" level="project" name="xmlbeans" />
+      <element id="extracted-dir" path="$USER_HOME$/Downloads/ApachePOIDownload/poi-4.1.0/poi-4.1.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/Downloads/ApachePOIDownload/poi-4.1.0/poi-ooxml-4.1.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/Downloads/ApachePOIDownload/poi-4.1.0/poi-examples-4.1.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/Downloads/ApachePOIDownload/poi-4.1.0/poi-excelant-4.1.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/Downloads/ApachePOIDownload/poi-4.1.0/poi-scratchpad-4.1.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/Downloads/ApachePOIDownload/poi-4.1.0/poi-ooxml-schemas-4.1.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/Downloads/ApachePOIDownload/xmlbeans-3.1.0/lib/resolver.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/Downloads/ApachePOIDownload/xmlbeans-3.1.0/lib/xmlbeans-3.1.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/Downloads/ApachePOIDownload/xmlbeans-3.1.0/lib/xmlbeans-3.1.0-javadoc.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/Downloads/ApachePOIDownload/xmlbeans-3.1.0/lib/xmlbeans-3.1.0-sources.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/Downloads/ApachePOIDownload/poi-ooxml-3.9.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/Downloads/ApachePOIDownload/stax-api-1.0.1.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>

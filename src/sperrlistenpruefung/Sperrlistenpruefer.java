@@ -159,9 +159,11 @@ public class Sperrlistenpruefer {
         System.out.println("AktuellerListenPfad:");
         System.out.println(aktuellerListenPfad);
         String[] neuerListenPfad;
+        // Nur für Testausgaben:
+        //   System.out.println("Das verwendete OS: " + verwendetesOS);
 
         //Unter MacOS werden / diese Schrägstriche genutzt
-        if (verwendetesOS.equals("mac") || verwendetesOS.equals("nix")
+        if (verwendetesOS.equals("Mac OS X") || verwendetesOS.equals("nix")
                 || verwendetesOS.equals("nux")
                 || verwendetesOS.equals("aix")) {
 
