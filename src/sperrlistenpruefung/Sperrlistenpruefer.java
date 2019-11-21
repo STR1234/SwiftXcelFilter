@@ -22,7 +22,8 @@ public class Sperrlistenpruefer {
 
     public Sperrlistenpruefer(String ListenPfad) {
         this.mailListenPfad = ListenPfad;
-        this.mailListenLeser = new Sperrlistenleser(mailListenPfad, false);
+        this.mailListenLeser =
+                new Sperrlistenleser(mailListenPfad, false);
         this.sperrListenLeser =
                 new Sperrlistenleser(mailListenPfad, true);
 
@@ -53,6 +54,9 @@ public class Sperrlistenpruefer {
                 if (aktuelleAdresse.equals(
                         sperrListenLeser.gibZeilenWert(i, 1))) {
                         this.zuSperrendeAdressZeilen.add(j);
+
+                        // Wir merken uns die bereits entfernten Mailadressen.
+                        // Ohne Duplikate.
                         if (!this.enternteAdressen.contains(aktuelleAdresse)) {
                             this.enternteAdressen.add(aktuelleAdresse);
                         }
@@ -211,6 +215,9 @@ public class Sperrlistenpruefer {
         return aktuellerListenPfad;
     }
 
+    /**Neue vom OS abhängige Listenpfaderstellung.
+     * @param os Das Betriebssystem, auf dem die Software läuft.
+     */
     public void listenPfadOS(String os) {
 
     }

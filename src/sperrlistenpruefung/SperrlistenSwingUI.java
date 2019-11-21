@@ -153,29 +153,4 @@ public class SperrlistenSwingUI {
             }
         }
     }
-
-    public void resetButton() {
-        Component[] contentPaneComponent = this.frame.getContentPane().getComponents();
-
-        for (int i = 0; i < contentPaneComponent.length; i++) {
-
-            if (contentPaneComponent[i] instanceof JPanel) {
-                JPanel panel = (JPanel) contentPaneComponent[i];
-                Component[] panelComponent = panel.getComponents();
-
-                for (int j = 0; j < panelComponent.length; j++) {
-                    if (panelComponent[j] instanceof JButton) {
-                        JButton button =
-                                (JButton) panelComponent[j];
-                        button.setEnabled(true);
-                        button.setContentAreaFilled(false);
-                        for (ActionListener al : button.getActionListeners()) {
-                            button.removeActionListener(al);
-                        }
-                        addListeners(button, "action");
-                    }
-                }
-            }
-        }
-    }
 }
