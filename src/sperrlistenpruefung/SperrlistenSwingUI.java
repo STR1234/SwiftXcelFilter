@@ -20,6 +20,11 @@ public class SperrlistenSwingUI {
     ActionListener clickListener;
     File selectedFile;
     boolean isFileSelected = false;
+    //Für spätere Sprachunterscheidung je nach Systemsprache.
+    String buttonTextAuswählen;
+    String buttonTextAbbrechen;
+    String labelText;
+
 
     public SperrlistenSwingUI() {
         this.initialiseFrame();

@@ -17,7 +17,7 @@ public class Sperrlistenpruefer {
     String mailListenPfad;
     String verwendetesOS = System.getProperty("os.name");
 
-    //Windows
+    //Windows-Variante
     String speicherPfad;
 
     public Sperrlistenpruefer(String ListenPfad) {
@@ -33,6 +33,8 @@ public class Sperrlistenpruefer {
         if (this.verwendetesOS.equals("Mac OS X") || verwendetesOS.equals("nix")
                 || verwendetesOS.equals("nux")
                 || verwendetesOS.equals("aix")) {
+
+            //Unix-Variante
             this.speicherPfad = "/";
         }
     }
@@ -168,6 +170,8 @@ public class Sperrlistenpruefer {
         System.out.println("AktuellerListenPfad:");
         System.out.println(aktuellerListenPfad);
         String[] neuerListenPfad;
+        Boolean isUnixOS = false;
+
         // Nur für Testausgaben:
         //   System.out.println("Das verwendete OS: " + verwendetesOS);
 
@@ -176,6 +180,7 @@ public class Sperrlistenpruefer {
                 || verwendetesOS.equals("nux")
                 || verwendetesOS.equals("aix")) {
 
+            isUnixOS = true;
             neuerListenPfad = aktuellerListenPfad.split("/");
             neuerListenPfad[neuerListenPfad.length - 1] = "MaillisteNeu.xlsx";
         } else if (verwendetesOS.equals("win")) {
@@ -190,21 +195,27 @@ public class Sperrlistenpruefer {
 
         for (int i = 0; i < neuerListenPfad.length; i++) {
             if (i == 0) {
-                //Windows
-                this.speicherPfad =  neuerListenPfad[i];
 
-                //MacOS
-                this.speicherPfad = this.speicherPfad + neuerListenPfad[i];
-                System.out.println(neuerListenPfad[i]);
+                if (!isUnixOS) {
+                    //Windows
+                    this.speicherPfad = neuerListenPfad[i];
+                } else {
+                    //MacOS
+                    this.speicherPfad = this.speicherPfad + neuerListenPfad[i];
+                    System.out.println(neuerListenPfad[i]);
+                }
 
             } else if (i < neuerListenPfad.length - 1) {
-                //Windows
-                this.speicherPfad =
-                        this.speicherPfad + "\\" + neuerListenPfad[i];
-
-                //MacOS
-                this.speicherPfad = this.speicherPfad + neuerListenPfad[i] + "/";
-                System.out.println(neuerListenPfad[i]);
+                if (!isUnixOS) {
+                    //Windows
+                    this.speicherPfad = this.speicherPfad
+                            + "\\" + neuerListenPfad[i];
+                } else {
+                    //MacOS
+                    this.speicherPfad = this.speicherPfad
+                            + neuerListenPfad[i] + "/";
+                    System.out.println(neuerListenPfad[i]);
+                }
             } else {
                 this.speicherPfad = this.speicherPfad + neuerListenPfad[i];
                 System.out.println(neuerListenPfad[i]);
@@ -213,12 +224,5 @@ public class Sperrlistenpruefer {
 
         System.out.println(this.speicherPfad);
         return aktuellerListenPfad;
-    }
-
-    /**Neue vom OS abhängige Listenpfaderstellung.
-     * @param os Das Betriebssystem, auf dem die Software läuft.
-     */
-    public void listenPfadOS(String os) {
-
     }
 }
