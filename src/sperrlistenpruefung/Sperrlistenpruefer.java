@@ -16,8 +16,7 @@ public class Sperrlistenpruefer {
     ArrayList enternteAdressen = new ArrayList();
     String mailListenPfad;
     String verwendetesOS = System.getProperty("os.name");
-
-    //Windows-Variante
+    Boolean isUnixOS = false;
     String speicherPfad;
 
     public Sperrlistenpruefer(String ListenPfad) {
@@ -33,7 +32,7 @@ public class Sperrlistenpruefer {
         if (this.verwendetesOS.equals("Mac OS X") || verwendetesOS.equals("nix")
                 || verwendetesOS.equals("nux")
                 || verwendetesOS.equals("aix")) {
-
+            isUnixOS = true;
             //Unix-Variante
             this.speicherPfad = "/";
         }
@@ -75,7 +74,7 @@ public class Sperrlistenpruefer {
             mailListenLeser.loescheZeile(zeile);
         }
         schiebeZellen();
-        schreibe();
+        schreibe("MaillisteNeu.xlsx");
     }
 
     public void schiebeZellen() {
@@ -133,9 +132,9 @@ public class Sperrlistenpruefer {
 
     }
 
-    public void schreibe() {
+    public void schreibe(String sheetName) {
         try {
-            neuerListenPfad();
+            neuerListenPfad(sheetName);
             FileOutputStream fileOutputStream =
                     new FileOutputStream(
                             new File(this.speicherPfad));
@@ -165,37 +164,34 @@ public class Sperrlistenpruefer {
                removeRow(mailListenLeser.sheet.getRow(aktuelleStelle));
     }
 
-    public String neuerListenPfad() {
+    public String neuerListenPfad(String sheetName) {
         String aktuellerListenPfad = this.mailListenPfad;
+
+        //Some console prints to check program status.
         System.out.println("AktuellerListenPfad:");
         System.out.println(aktuellerListenPfad);
+
         String[] neuerListenPfad;
-        Boolean isUnixOS = false;
 
         // Nur für Testausgaben:
         //   System.out.println("Das verwendete OS: " + verwendetesOS);
 
         //Unter MacOS werden / diese Schrägstriche genutzt
-        if (verwendetesOS.equals("Mac OS X") || verwendetesOS.equals("nix")
-                || verwendetesOS.equals("nux")
-                || verwendetesOS.equals("aix")) {
-
-            isUnixOS = true;
+        if (isUnixOS) {
             neuerListenPfad = aktuellerListenPfad.split("/");
-            neuerListenPfad[neuerListenPfad.length - 1] = "MaillisteNeu.xlsx";
+            neuerListenPfad[neuerListenPfad.length - 1] = sheetName;
         } else if (verwendetesOS.equals("win")) {
             neuerListenPfad = aktuellerListenPfad.split("\\\\");
-            neuerListenPfad[neuerListenPfad.length - 1] = "\\MaillisteNeu.xlsx";
+            neuerListenPfad[neuerListenPfad.length - 1] = "\\" + sheetName;
         } else {
             neuerListenPfad = aktuellerListenPfad.split("/");
-            neuerListenPfad[neuerListenPfad.length - 1] = "MaillisteNeu.xlsx";
+            neuerListenPfad[neuerListenPfad.length - 1] = sheetName;
             System.out.println("Pfadname kann unter diesem OS fehlerhaft sein" +
                     ".");
         }
 
         for (int i = 0; i < neuerListenPfad.length; i++) {
             if (i == 0) {
-
                 if (!isUnixOS) {
                     //Windows
                     this.speicherPfad = neuerListenPfad[i];
