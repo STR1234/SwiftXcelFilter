@@ -20,6 +20,8 @@ public class Sperrlistenleser {
 
     XSSFWorkbook workbook;
 
+    XSSFWorkbook geloeschteAdressenWorkbook = new XSSFWorkbook();
+
     XSSFSheet sheet;
 
     boolean initialisiert = false;
@@ -51,7 +53,7 @@ public class Sperrlistenleser {
 
     public void initialisiereWorkbook() {
         try {
-            initialisiert = true;
+            initialisiert = true; //könnte man ggfs löschen, nochmal checken
 
             this.oeffneStream();
 
@@ -123,5 +125,4 @@ public class Sperrlistenleser {
     public int gibZeilenAnzahl() {
         return this.sheet.getLastRowNum();
     }
-
 }

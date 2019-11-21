@@ -33,14 +33,24 @@ public class Sperrlistenpruefer {
                 || verwendetesOS.equals("nux")
                 || verwendetesOS.equals("aix")) {
             isUnixOS = true;
+        }
+        initialisiereSpeicherPfad();
+    }
+
+    public void initialisiereSpeicherPfad() {
+        if (isUnixOS) {
             //Unix-Variante
             this.speicherPfad = "/";
+        } else {
+            //Windows-Variante
+            this.speicherPfad = "";
         }
     }
 
     public void pruefe() {
         mailAdressenFilter();
         modifiziere();
+        schreibeGeloeschteAdressen();
     }
 
     public void mailAdressenFilter() {
@@ -141,7 +151,7 @@ public class Sperrlistenpruefer {
 
             mailListenLeser.workbook.write(fileOutputStream);
 
-            System.out.println("MaillisteNeu erstellt");
+            System.out.println(sheetName + " erstellt.");
             fileOutputStream.close();
 
         } catch (Exception e) {
@@ -220,5 +230,23 @@ public class Sperrlistenpruefer {
 
         System.out.println(this.speicherPfad);
         return aktuellerListenPfad;
+    }
+
+    public void schreibeGeloeschteAdressen() {
+        Iterator<String> entfernteAdressenIterator =
+                enternteAdressen.iterator();
+        int i = 0;
+        while (entfernteAdressenIterator.hasNext()) {
+            String entfernteAdresse = entfernteAdressenIterator.next();
+            sperrListenLeser.geloeschteAdressenWorkbook.createSheet();
+            sperrListenLeser.geloeschteAdressenWorkbook.getSheetAt(0)
+                    .createRow(1);
+            sperrListenLeser.geloeschteAdressenWorkbook.getSheetAt(0).
+                    getRow(1).createCell(i)
+                    .setCellValue(entfernteAdresse);
+            i++;
+        }
+        initialisiereSpeicherPfad();
+        schreibe("EntfernteAdressen.xlsx");
     }
 }
