@@ -64,14 +64,14 @@ public class Sperrlistenpruefer {
                 String aktuelleAdresse =
                         mailListenLeser.gibZeilenWert(j, 1);
                 if (aktuelleAdresse.equals(
-                        sperrListenLeser.gibZeilenWert(i, 1))) {
-                        this.zuSperrendeAdressZeilen.add(j);
+                    sperrListenLeser.gibZeilenWert(i, 1))) {
+                    this.zuSperrendeAdressZeilen.add(j);
 
-                        // Wir merken uns die bereits entfernten Mailadressen.
-                        // Ohne Duplikate.
-                        if (!this.enternteAdressen.contains(aktuelleAdresse)) {
-                            this.enternteAdressen.add(aktuelleAdresse);
-                        }
+                    // Wir merken uns die bereits entfernten Mailadressen.
+                    // Ohne Duplikate.
+                    if (!this.enternteAdressen.contains(aktuelleAdresse)) {
+                        this.enternteAdressen.add(aktuelleAdresse);
+                    }
                 }
             }
         }
