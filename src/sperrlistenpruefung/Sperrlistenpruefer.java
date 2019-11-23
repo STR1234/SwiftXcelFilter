@@ -4,7 +4,6 @@ import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFRow;
-import org.apache.poi.xssf.usermodel.XSSFSheet;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -152,15 +151,22 @@ public class Sperrlistenpruefer {
             FileOutputStream fileOutputStream =
                     new FileOutputStream(
                             new File(this.speicherPfad));
+
             if (!istEntfernteAdressenWorkbook) {
                 mailListenLeser.workbook.write(fileOutputStream);
             } else {
-                mailListenLeser.geloeschteAdressenWorkbook
+                sperrListenLeser.geloeschteAdressenWorkbook
                         .write(fileOutputStream);
             }
 
             System.out.println(sheetName + " erstellt.");
             fileOutputStream.close();
+
+            if (!istEntfernteAdressenWorkbook) {
+                mailListenLeser.workbook.close();
+            } else {
+                sperrListenLeser.geloeschteAdressenWorkbook.close();
+            }
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -173,7 +179,8 @@ public class Sperrlistenpruefer {
                 getCell(1);
 
         mailListenLeser.sheet.createRow(ersteStelleZelleLeer);
-        mailListenLeser.sheet.getRow(ersteStelleZelleLeer).createCell(1);
+        mailListenLeser.sheet.getRow(ersteStelleZelleLeer)
+                .createCell(1);
 
         mailListenLeser.sheet.getRow(ersteStelleZelleLeer).getCell(1).
                 setCellValue(cell.getStringCellValue());
@@ -243,25 +250,26 @@ public class Sperrlistenpruefer {
     public void schreibeGeloeschteAdressen() {
         Iterator<String> entfernteAdressenIterator =
                 enternteAdressen.iterator();
-        XSSFSheet entfernteAdressenSheet =
-                sperrListenLeser.geloeschteAdressenWorkbook
-                .createSheet("Entfernte Adressen");
 
-        XSSFRow entfernteAdressenRow = entfernteAdressenSheet
-                .createRow(1);
-
-        entfernteAdressenRow.createCell(0)
-                .setCellValue("Entfernte Adressen");
-        int i = 1;
+        int i = 0;
         while (entfernteAdressenIterator.hasNext()) {
-            entfernteAdressenRow = entfernteAdressenSheet.createRow(i);
+            XSSFRow entfernteAdressenRow =
+                    sperrListenLeser.entfernteAdressenSheet
+                    .createRow(i);
+
+            if (i == 0) {
+                entfernteAdressenRow.createCell(1)
+                        .setCellValue("Entfernte Adressen");
+            }
+
             String entfernteAdresse = entfernteAdressenIterator.next();
 
-            entfernteAdressenRow.createCell(0).
-                    setCellValue(entfernteAdresse);
+            entfernteAdressenRow.createCell(1)
+                    .setCellValue(entfernteAdresse);
             i++;
         }
         initialisiereSpeicherPfad();
-        schreibe("EntfernteAdressen.xlsx", true);
+        schreibe("EntfernteAdressen.xlsx",
+                true);
     }
 }

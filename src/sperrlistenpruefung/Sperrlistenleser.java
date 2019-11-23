@@ -3,6 +3,7 @@ package sperrlistenpruefung;
 
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellType;
+import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
@@ -21,6 +22,10 @@ public class Sperrlistenleser {
     XSSFWorkbook workbook;
 
     XSSFWorkbook geloeschteAdressenWorkbook = new XSSFWorkbook();
+
+    XSSFSheet entfernteAdressenSheet =
+            this.geloeschteAdressenWorkbook
+                    .createSheet("Entfernte Adressen");
 
     XSSFSheet sheet;
 
@@ -102,10 +107,10 @@ public class Sperrlistenleser {
                     zeilenWert = cell.getStringCellValue();
                 }
             }
-
         } catch (Exception e) {
             e.printStackTrace();
         }
+
         return zeilenWert;
     }
 
