@@ -89,7 +89,7 @@ public class Sperrlistenleser {
     }
 
     public String gibZeilenWert(int zeile, int spalte) {
-        String zeilenWert = "Fehler";
+        String zeilenWert = "E-Mail";
 
         try {
             if (!initialisiert) {

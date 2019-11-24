@@ -1,8 +1,6 @@
 package sperrlistenpruefung;
 
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.CellType;
-import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 
 import java.io.File;
@@ -253,6 +251,8 @@ public class Sperrlistenpruefer {
 
         int i = 0;
         while (entfernteAdressenIterator.hasNext()) {
+            sperrListenLeser.entfernteAdressenSheet.autoSizeColumn(1);
+
             XSSFRow entfernteAdressenRow =
                     sperrListenLeser.entfernteAdressenSheet
                     .createRow(i);
