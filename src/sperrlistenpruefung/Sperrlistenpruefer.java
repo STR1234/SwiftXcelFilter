@@ -17,6 +17,7 @@ public class Sperrlistenpruefer {
     String verwendetesOS = System.getProperty("os.name");
     Boolean isUnixOS = false;
     String speicherPfad;
+    String maillisteNeuPfad;
 
     public Sperrlistenpruefer(String ListenPfad) {
         this.mailListenPfad = ListenPfad;
@@ -145,7 +146,7 @@ public class Sperrlistenpruefer {
     public void schreibe(String sheetName,
                          boolean istEntfernteAdressenWorkbook) {
         try {
-            neuerListenPfad(sheetName);
+            neuerListenPfad(sheetName, istEntfernteAdressenWorkbook);
             FileOutputStream fileOutputStream =
                     new FileOutputStream(
                             new File(this.speicherPfad));
@@ -187,7 +188,8 @@ public class Sperrlistenpruefer {
                removeRow(mailListenLeser.sheet.getRow(aktuelleStelle));
     }
 
-    public String neuerListenPfad(String sheetName) {
+    public String neuerListenPfad(String sheetName,
+                                  boolean istEntfernteAdressenWorkbook) {
         String aktuellerListenPfad = this.mailListenPfad;
 
         //Some console prints to check program status.
@@ -239,6 +241,10 @@ public class Sperrlistenpruefer {
                 this.speicherPfad = this.speicherPfad + neuerListenPfad[i];
                 System.out.println(neuerListenPfad[i]);
             }
+        }
+
+        if (!istEntfernteAdressenWorkbook) {
+            this.maillisteNeuPfad = this.speicherPfad;
         }
 
         System.out.println(this.speicherPfad);

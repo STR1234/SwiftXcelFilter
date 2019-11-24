@@ -96,15 +96,18 @@ public class SperrlistenSwingUI {
                                     "gespeichert unter: ");
 
                             JLabel speicherPfadLabel =
-                                    new JLabel(sperrlistenpruefer.speicherPfad);
+                                    new JLabel(sperrlistenpruefer
+                                            .maillisteNeuPfad);
 
                             Font font = speicherPfadLabel.getFont();
                             Map attributes = font.getAttributes();
                             attributes.put(TextAttribute.UNDERLINE,
                                     TextAttribute.UNDERLINE_ON);
-                            speicherPfadLabel.setFont(font.deriveFont(attributes));
+                            speicherPfadLabel
+                                    .setFont(font.deriveFont(attributes));
 
-                            speicherPfadLabel.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+                            speicherPfadLabel.setCursor(Cursor.
+                                    getPredefinedCursor(Cursor.HAND_CURSOR));
                             speicherPfadLabel.addMouseListener((new MouseAdapter() {
                                 @Override
                                 public void mouseClicked(MouseEvent e) {
@@ -112,7 +115,9 @@ public class SperrlistenSwingUI {
                                         try {
                                             //Java 9 and newer required - using
                                             // Desktop API
-                                            File file = new File(sperrlistenpruefer.speicherPfad);
+                                            File file =
+                                                    new File(sperrlistenpruefer
+                                                            .speicherPfad);
                                             Desktop desktop = Desktop.getDesktop();
                                             desktop.open(file);
                                         } catch (IOException e1) {
