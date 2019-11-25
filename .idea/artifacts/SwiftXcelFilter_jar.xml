@@ -1,5 +1,5 @@
 <component name="ArtifactManager">
-  <artifact type="jar" name="SwiftXcelFilter:jar">
+  <artifact type="jar" build-on-make="true" name="SwiftXcelFilter:jar">
     <output-path>$PROJECT_DIR$/compilerOutput/artifacts/SwiftXcelFilter_jar</output-path>
     <root id="archive" name="SwiftXcelFilter.jar">
       <element id="module-output" name="SwiftXcelFilter" />
