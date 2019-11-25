@@ -1,2 +1,2 @@
 # SwiftXcelFilter
-SwiftUI enhanced version of XcelFilter.
+SwingUI enhanced version of XcelFilter.
