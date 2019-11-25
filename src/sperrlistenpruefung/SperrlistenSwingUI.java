@@ -10,7 +10,6 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Map;
 import javax.swing.*;
-import javax.swing.border.Border;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
@@ -35,7 +34,8 @@ public class SperrlistenSwingUI {
     }
 
     public void initialiseFrame(){
-        this.frame = new JFrame("Sperrlistenprüfer");
+        this.frame = new JFrame("SwiftXcelFilter");
+        frame.setOpacity(1f);
 
         JButton auswaehlenButton = new JButton("Auswählen");
         JButton abbrechenButton = new JButton("Abbrechen");
@@ -47,22 +47,32 @@ public class SperrlistenSwingUI {
         JLabel textZwei = new JLabel();
         textZwei.setName("textZwei");
 
+        textZwei.setOpaque(true);
+        textEins.setOpaque(true);
+
+        textPanelEins.setOpaque(true);
+        textPanelZwei.setOpaque(true);
+
+        textPanelZwei.setVisible(false);
+
         initializePanelsAndLabels(textPanelEins, textEins);
         initializePanelsAndLabels(textPanelZwei, textZwei);
 
         buttonPanel.setLayout(new FlowLayout(FlowLayout.RIGHT));
-        buttonPanel.setBackground(Color.blue);
+     //   buttonPanel.setBackground(Color.blue);
         buttonPanel.add(auswaehlenButton);
         buttonPanel.add(abbrechenButton);
 
         frame.getContentPane().setLayout(new FlowLayout());
-        frame.setPreferredSize(new Dimension(400, 200));
+        frame.setPreferredSize(new Dimension(450, 140));
         frame.getContentPane().add(textPanelEins);
         frame.getContentPane().add(textPanelZwei);
         frame.getContentPane().add(buttonPanel);
         frame.setDefaultCloseOperation((JFrame.EXIT_ON_CLOSE));
         frame.pack();
         frame.setLocationRelativeTo(null);
+     //   Color frameBackground = Color.blue;
+     //   frame.setBackground(frameBackground);
         frame.setVisible(true);
         frame.setResizable(false);
 
@@ -72,7 +82,6 @@ public class SperrlistenSwingUI {
 
     public void initializePanelsAndLabels(JPanel textPanel, JLabel textLabel) {
         textPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
-        textPanel.setBackground(Color.white);
         textPanel.add(textLabel);
     }
 
@@ -150,7 +159,7 @@ public class SperrlistenSwingUI {
                     }
                 }
             }
-            
+            textPanelZwei.setVisible(true);
             frame.repaint();
         }
     }
