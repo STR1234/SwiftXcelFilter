@@ -142,7 +142,7 @@ public class SperrlistenSwingUI {
                                 textPanelZwei.add(entfernteAdressenPfadLabel);
                                 frame.setSize(entfernteAdressenPfadLabel
                                         .getText()
-                                        .length() * 7, frame.getHeight());
+                                        .length() * 14, frame.getHeight());
                             }
 
                             frame.setLocationRelativeTo(null);
