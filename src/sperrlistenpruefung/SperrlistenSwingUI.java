@@ -40,7 +40,8 @@ public class SperrlistenSwingUI {
         JButton auswaehlenButton = new JButton("Auswählen");
         JButton abbrechenButton = new JButton("Abbrechen");
 
-        JLabel textEins = new JLabel("Bitte wählen Sie die zu prüfende .xlsx "
+        JLabel textEins =
+                new JLabel("Bitte wählen Sie die zu prüfende .xlsx "
                 + "Datei aus.");
         textEins.setName("textEins");
         JLabel textZwei = new JLabel();
@@ -63,6 +64,7 @@ public class SperrlistenSwingUI {
         frame.pack();
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
+        frame.setResizable(false);
 
         addListeners(auswaehlenButton, "auswaehlen");
         addListeners(abbrechenButton, "abbrechen");
@@ -88,8 +90,6 @@ public class SperrlistenSwingUI {
 
             Sperrlistenpruefer sperrlistenpruefer =
                     new Sperrlistenpruefer(selectedFile.getAbsolutePath());
-
-            verwendetesOS = sperrlistenpruefer.verwendetesOS;
 
             sperrlistenpruefer.pruefe();
 
@@ -150,6 +150,7 @@ public class SperrlistenSwingUI {
                     }
                 }
             }
+            
             frame.repaint();
         }
     }
