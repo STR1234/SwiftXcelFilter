@@ -13,7 +13,6 @@ import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
-import javax.swing.plaf.BorderUIResource;
 
 public class SperrlistenSwingUI {
     JFrame frame;
