@@ -35,7 +35,7 @@ public class SperrlistenSwingUI {
     }
 
     public void initialiseFrame(){
-        this.frame = new JFrame("SwiftXcelFilter");
+        this.frame = new JFrame("SwiftXcelFilter 0.9");
 
         JButton auswaehlenButton = new JButton("Auswählen");
         JButton abbrechenButton = new JButton("Abbrechen");
