@@ -10,8 +10,10 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Map;
 import javax.swing.*;
+import javax.swing.border.Border;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.plaf.BorderUIResource;
 
 public class SperrlistenSwingUI {
     JFrame frame;
@@ -35,7 +37,6 @@ public class SperrlistenSwingUI {
 
     public void initialiseFrame(){
         this.frame = new JFrame("SwiftXcelFilter");
-        frame.setOpacity(1f);
 
         JButton auswaehlenButton = new JButton("Auswählen");
         JButton abbrechenButton = new JButton("Abbrechen");
@@ -47,8 +48,8 @@ public class SperrlistenSwingUI {
         JLabel textZwei = new JLabel();
         textZwei.setName("textZwei");
 
-        textZwei.setOpaque(true);
         textEins.setOpaque(true);
+        textZwei.setOpaque(true);
 
         textPanelEins.setOpaque(true);
         textPanelZwei.setOpaque(true);
@@ -59,7 +60,6 @@ public class SperrlistenSwingUI {
         initializePanelsAndLabels(textPanelZwei, textZwei);
 
         buttonPanel.setLayout(new FlowLayout(FlowLayout.RIGHT));
-     //   buttonPanel.setBackground(Color.blue);
         buttonPanel.add(auswaehlenButton);
         buttonPanel.add(abbrechenButton);
 
@@ -71,8 +71,6 @@ public class SperrlistenSwingUI {
         frame.setDefaultCloseOperation((JFrame.EXIT_ON_CLOSE));
         frame.pack();
         frame.setLocationRelativeTo(null);
-     //   Color frameBackground = Color.blue;
-     //   frame.setBackground(frameBackground);
         frame.setVisible(true);
         frame.setResizable(false);
 
@@ -83,6 +81,24 @@ public class SperrlistenSwingUI {
     public void initializePanelsAndLabels(JPanel textPanel, JLabel textLabel) {
         textPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
         textPanel.add(textLabel);
+    }
+
+    public Border borderFactory(int borderType) {
+        Border border;
+        switch (borderType) {
+            case 0: border = BorderFactory.createBevelBorder(1);
+            break;
+            case 1: border = BorderFactory.createLineBorder(Color.black);
+            break;
+            case 2: border = BorderFactory.createEtchedBorder(0);
+            break;
+            case 3: border = BorderFactory.createSoftBevelBorder(1);
+            break;
+            default: border = null;
+            break;
+        }
+
+        return border;
     }
 
     public void fileChooser() {
@@ -137,7 +153,7 @@ public class SperrlistenSwingUI {
                             } else if (cp2.getName().equals("textZwei")) {
                                 JLabel label = (JLabel) cp2;
 
-                                label.setText("Enternte Adressen wurde "
+                                label.setText("EnternteAdressen wurde "
                                         + "gespeichert unter: ");
 
                                 JLabel entfernteAdressenPfadLabel =
@@ -159,6 +175,8 @@ public class SperrlistenSwingUI {
                     }
                 }
             }
+            textPanelEins.setBorder(borderFactory(2));
+            textPanelZwei.setBorder(borderFactory(2));
             textPanelZwei.setVisible(true);
             frame.repaint();
         }
