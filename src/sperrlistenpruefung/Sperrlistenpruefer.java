@@ -205,7 +205,7 @@ public class Sperrlistenpruefer {
         if (isUnixOS) {
             neuerListenPfad = aktuellerListenPfad.split("/");
             neuerListenPfad[neuerListenPfad.length - 1] = sheetName;
-        } else if (verwendetesOS.equals("win")) {
+        } else if (verwendetesOS.contains("Windows")) {
             neuerListenPfad = aktuellerListenPfad.split("\\\\");
             neuerListenPfad[neuerListenPfad.length - 1] = "\\" + sheetName;
         } else {
