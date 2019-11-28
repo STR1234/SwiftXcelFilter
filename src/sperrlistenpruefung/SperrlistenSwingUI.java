@@ -54,6 +54,9 @@ public class SperrlistenSwingUI {
         JLabel textEins =
                 new JLabel("Bitte wählen Sie die zu prüfende .xlsx "
                 + "Datei aus.");
+
+        System.out.println(textEins.getText().length());
+
         textEins.setName("textEins");
         JLabel textZwei = new JLabel();
         textZwei.setName("textZwei");
@@ -74,7 +77,7 @@ public class SperrlistenSwingUI {
         buttonPanel.add(abbrechenButton);
 
         frame.getContentPane().setLayout(new FlowLayout());
-        frame.setPreferredSize(new Dimension(450, 140));
+        frame.setPreferredSize(new Dimension(350, 115));
         frame.getContentPane().add(textPanelEins);
         frame.getContentPane().add(textPanelZwei);
         frame.getContentPane().add(buttonPanel);
@@ -176,9 +179,22 @@ public class SperrlistenSwingUI {
 
                                 textPanelZwei.add(entfernteAdressenPfadLabel);
 
-                                frame.setSize(entfernteAdressenPfadLabel
-                                        .getText().length() * 14, frame
+                                //Good testing value for my Test under macOS
+                                // and desktop "Test für Mailing" is
+                                // entfernteAdressenPfadLabel.length() * 14
+                           /**    frame.setSize(entfernteAdressenPfadLabel
+                                        .getText().length() +
+                                                label.getText().length(),
+                                        frame
                                         .getHeight());
+                            */
+                                int entfernteAdressenLabelLaenge =
+                                        entfernteAdressenPfadLabel
+                                                .getText().length();
+                                frame.setSize((int) ((label.getText().length()
+                                                + entfernteAdressenLabelLaenge)
+                                                * 7.1),
+                                        140);
                             }
 
                             frame.setLocationRelativeTo(null);
