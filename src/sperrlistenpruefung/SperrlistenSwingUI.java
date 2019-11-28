@@ -178,16 +178,7 @@ public class SperrlistenSwingUI {
                                                 entfernteAdressenPfad)));
 
                                 textPanelZwei.add(entfernteAdressenPfadLabel);
-
-                                //Good testing value for my Test under macOS
-                                // and desktop "Test für Mailing" is
-                                // entfernteAdressenPfadLabel.length() * 14
-                           /**    frame.setSize(entfernteAdressenPfadLabel
-                                        .getText().length() +
-                                                label.getText().length(),
-                                        frame
-                                        .getHeight());
-                            */
+                                
                                 int entfernteAdressenLabelLaenge =
                                         entfernteAdressenPfadLabel
                                                 .getText().length();
