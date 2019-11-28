@@ -176,19 +176,9 @@ public class SperrlistenSwingUI {
 
                                 textPanelZwei.add(entfernteAdressenPfadLabel);
 
-                                if (verwendetesOS.equals("Mac OS X")) {
-                                    frame.setSize(entfernteAdressenPfadLabel
-                                            .getText().length() * 14, frame
-                                            .getHeight());
-                                } else {
-                                    System.out.println("Die Fenstergroesse " +
-                                            "ist möglicherweise nicht an das" +
-                                            "verwendete OS angepasst.");
-                                    frame.setSize(
-                                            entfernteAdressenPfadLabel
-                                        .getText().length() * 20,
-                                            frame.getHeight());
-                                }
+                                frame.setSize(entfernteAdressenPfadLabel
+                                        .getText().length() * 14, frame
+                                        .getHeight());
                             }
 
                             frame.setLocationRelativeTo(null);
