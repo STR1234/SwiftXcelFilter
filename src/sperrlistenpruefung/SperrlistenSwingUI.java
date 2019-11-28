@@ -22,7 +22,9 @@ public class SperrlistenSwingUI {
     ActionListener clickListener;
     File selectedFile;
     boolean isFileSelected = false;
-    String verwendetesOS;
+    String verwendetesOS = System.getProperty("os.name");
+    String version = "1.0 ";
+    String frameTitle = "SwiftXcelFilter " + version;
     //Für spätere Sprachunterscheidung je nach Systemsprache.
     String buttonTextAuswählen;
     String buttonTextAbbrechen;
@@ -35,8 +37,17 @@ public class SperrlistenSwingUI {
     }
 
     public void initialiseFrame(){
-        this.frame = new JFrame("SwiftXcelFilter 1.0");
+        if (verwendetesOS.equals("Mac OS X")) {
+            this.frame = new JFrame(frameTitle + " macOS");
+        } else {
+            //Die Erkennung von Windows oder Linux etc. sollte noch anhand des
+            // Rückgabewertes der System.getProperty Methode auf dem
+            // jeweiligen OS implemetiert werden.
+            this.frame = new JFrame(frameTitle + " Windows");
+        }
 
+        System.out.println("Der jeweilige Rückgabewert der System" +
+                ".getProperty Methode: " + verwendetesOS);
         JButton auswaehlenButton = new JButton("Auswählen");
         JButton abbrechenButton = new JButton("Abbrechen");
 
@@ -164,9 +175,20 @@ public class SperrlistenSwingUI {
                                                 entfernteAdressenPfad)));
 
                                 textPanelZwei.add(entfernteAdressenPfadLabel);
-                                frame.setSize(entfernteAdressenPfadLabel
-                                        .getText()
-                                        .length() * 14, frame.getHeight());
+
+                                if (verwendetesOS.equals("Mac OS X")) {
+                                    frame.setSize(entfernteAdressenPfadLabel
+                                            .getText().length() * 14, frame
+                                            .getHeight());
+                                } else {
+                                    System.out.println("Die Fenstergroesse " +
+                                            "ist möglicherweise nicht an das" +
+                                            "verwendete OS angepasst.");
+                                    frame.setSize(
+                                            entfernteAdressenPfadLabel
+                                        .getText().length() * 20,
+                                            frame.getHeight());
+                                }
                             }
 
                             frame.setLocationRelativeTo(null);
