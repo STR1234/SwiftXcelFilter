@@ -25,6 +25,7 @@ public class SperrlistenSwingUI {
     String verwendetesOS = System.getProperty("os.name");
     String version = "1.0 ";
     String frameTitle = "SwiftXcelFilter " + version;
+    int frameHeight;
     //Für spätere Sprachunterscheidung je nach Systemsprache.
     String buttonTextAuswählen;
     String buttonTextAbbrechen;
@@ -76,8 +77,10 @@ public class SperrlistenSwingUI {
         buttonPanel.add(auswaehlenButton);
         buttonPanel.add(abbrechenButton);
 
+        frameHeight = (verwendetesOS.equals("Mac OS X")) ? 115 : 135;
+
         frame.getContentPane().setLayout(new FlowLayout());
-        frame.setPreferredSize(new Dimension(350, 115));
+        frame.setPreferredSize(new Dimension(350, frameHeight));
         frame.getContentPane().add(textPanelEins);
         frame.getContentPane().add(textPanelZwei);
         frame.getContentPane().add(buttonPanel);
@@ -120,7 +123,8 @@ public class SperrlistenSwingUI {
                 new String[] {"xlsx"});
         fileChooser.setFileFilter(filter);
 
-        int optionChosen = fileChooser.showDialog(null, "Tabellendatei " +
+        int optionChosen = fileChooser.showDialog(null,
+                "Tabellendatei " +
                 "auswählen");
 
         if (optionChosen == JFileChooser.APPROVE_OPTION) {
@@ -155,11 +159,11 @@ public class SperrlistenSwingUI {
                                 label.setText("MaillisteNeu wurde "
                                         + "gespeichert unter: ");
 
-                                JLabel speicherPfadLabel = speicherPfadFactory(
-                                        sperrlistenpruefer, maillistenNeuPfad);
+                                JLabel speicherPfadLabel =
+                                        speicherPfadFactory(maillistenNeuPfad);
 
                                 speicherPfadLabel.addMouseListener((
-                                        mouseAdapterFactory(sperrlistenpruefer,
+                                        mouseAdapterFactory(
                                                 maillistenNeuPfad)));
 
                                 textPanelEins.add(speicherPfadLabel);
@@ -170,22 +174,26 @@ public class SperrlistenSwingUI {
                                         + "gespeichert unter: ");
 
                                 JLabel entfernteAdressenPfadLabel =
-                                        speicherPfadFactory(sperrlistenpruefer,
+                                        speicherPfadFactory(
                                                 entfernteAdressenPfad);
 
                                 entfernteAdressenPfadLabel.addMouseListener((
-                                        mouseAdapterFactory(sperrlistenpruefer,
+                                        mouseAdapterFactory(
                                                 entfernteAdressenPfad)));
 
                                 textPanelZwei.add(entfernteAdressenPfadLabel);
-                                
+
+                                frameHeight = (verwendetesOS
+                                               .equals("Mac OS X") ? 140 : 160);
                                 int entfernteAdressenLabelLaenge =
                                         entfernteAdressenPfadLabel
                                                 .getText().length();
-                                frame.setSize((int) ((label.getText().length()
+                                frame.setSize((int) (((label.getText().length()
                                                 + entfernteAdressenLabelLaenge)
-                                                * 7.1),
-                                        140);
+                                                * 7.1)
+                                                - entfernteAdressenLabelLaenge
+                                                / 20),
+                                        frameHeight);
                             }
 
                             frame.setLocationRelativeTo(null);
@@ -200,8 +208,7 @@ public class SperrlistenSwingUI {
         }
     }
 
-    public JLabel speicherPfadFactory(Sperrlistenpruefer sperrlistenpruefer,
-                                      String dateiPfad) {
+    public JLabel speicherPfadFactory(String dateiPfad) {
         JLabel speicherPfadLabel =
                 new JLabel(dateiPfad);
 
@@ -218,8 +225,7 @@ public class SperrlistenSwingUI {
         return speicherPfadLabel;
     }
 
-    public MouseAdapter mouseAdapterFactory(
-            Sperrlistenpruefer sperrlistenpruefer, String dateiPfad) {
+    public MouseAdapter mouseAdapterFactory(String dateiPfad) {
         MouseAdapter mouseAdapter =
         new MouseAdapter() {
             @Override
